@@ -10,12 +10,12 @@ script:
         - docker run -e CI=true react-test npm test -- --coverage
 
 after_success:
-        - docker build -t multi-client ./client
-        - docker build -t multi-nginx ./nginx
-        - docker build -t multi-server ./server
-        - docker build -t multi-worker ./worker
-        - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_ID"
-        - docker push multi-client
-        - docker push multi-nginx
-        - docker push multi-server
-        - docker push multi-worker        
+        - docker build -t cheschedocker/multi-client ./client
+        - docker build -t cheschedocker/multi-nginx ./nginx
+        - docker build -t cheschedocker/multi-server ./server
+        - docker build -t cheschedocker/multi-worker ./worker
+        - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_ID" --password-stdin
+        - docker push cheschedocker/multi-client
+        - docker push cheschedocker/multi-nginx
+        - docker push cheschedocker/multi-server
+        - docker push cheschedocker/multi-worker        
